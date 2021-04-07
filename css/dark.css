@@ -1,0 +1,22 @@
+.search{background:rgb(200 ,200, 200);box-shadow:0 0 5px 3px #0000004b;}
+#words{background:rgb(200 ,200, 200);box-shadow:0 0 5px 3px #0000004b;}
+#word1:hover,#word2:hover,#word3:hover,#word4:hover,#word5:hover{background:grey;color:white;padding-left:30px;}
+#word1,#word2,#word3,#word4,#word5{width:100%;transition: all .2s;padding-left:20px}
+.searchbutton{background:grey;fill:white}
+.searchbuttonselected{background:black;fill:white}
+#boxclose:hover{color:rgb(100 ,100, 100)}
+#boxclose:active{color:grey}
+.backimg{border:2px solid rgb(238, 238, 238)}
+.backimgs{border:2px solid rgb(200 ,200, 200)}
+#time{color:rgb(200 ,200, 200);text-shadow: 0em 0em 7px #000000}
+.setgroup{background:rgb(238, 238, 238)}
+a{color:rgb(100 ,100, 100)}
+a:hover{color:rgb(150 ,150, 150)}
+.yiyan{color:rgb(200 ,200, 200);text-shadow: 0em 0em 7px #000000;padding-left:5px;padding-bottom:30px}
+.setcolorbtns{box-shadow:0 0 3px 3px rgb(200 ,200, 200)}
+#pagebox{background:rgb(200 ,200, 200)}
+#setbtnon{background:rgb(200 ,200, 200);color:white;border:1px solid rgb(200 ,200, 200)}
+#setbtnoff{background:rgba(0,0,0,0);color:rgba(0,0,0,0);border:1px solid grey}
+#setinp,#nameinp,.appset{border-bottom:1px solid grey}
+#setinp:hover,#nameinp:hover,.appset:hover{border-bottom:1px solid rgb(120 ,120, 120)}
+#setinp:focus,#nameinp:focus,.appset:focus{border-bottom:1px solid rgb(200 ,200, 200)}
