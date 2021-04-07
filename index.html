@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="/js/jq.js" onerror="alert('资源加载失败，请刷新重试。')"></script>
+    <link rel="stylesheet" href="/main.css?3.1"/>
+    <link rel="stylesheet" id="styles" href="/css/blue.css"/>
+    <link rel="icon" id="styles" href="http://api.simsoft.top/appicon/SimTab.png"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>SimTab</title>
+	<meta name="description" content="超简洁实用的浏览器新标签页">
+</head>
+	<div id="backbox" style="display:none;z-index:-20"><img id="background" style="margin:0px;padding:0px;position:fixed;top:0;z-index:-2;margin:0 auto; left:0; right:0;object-fit: cover;" height="100%" width="100%"  onerror="$('#backbox').remove();notice('背景图片加载失败，请检查网络重试')" onload="$('#backbox').show(1000)"></div>
+<body onload="load()">
+	<div class="top">
+    <div class="topshadow" style></div>
+    <p class="title">页面启动中......</p>
+    <img id="setbtn" onclick="openset()" src="https://img.maocdn.cn/img/2020/10/23/settings.png" width="20px"/>
+	</div>
+    <div class="mask" style="display: none;" onclick="stopsearch();hidesecondpage();closebox('.setting');closebox('.editsite');finishwelcome()"></div>
+    <div class="notice" id="notice" style="bottom:-100px" onclick="$('.notice').attr('style','bottom:-100px')"></div>
+
+    <div class="main">
+    <center>
+    <h1 id="time">:</h1> 
+	<div id="yiyan" style><div class="yiyan" onclick >正在加载...</div></div>   
+    <div class="search" onclick="startsearch();document.getElementById('search').focus()">
+    <input id="search" placeholder="点击搜索" autocomplete="off" oninput="check();$('#moresearch').attr('style','display:none')" onfocus="startsearch()"></input>
+    <br>
+    <span id="baidubutton" class="searchbutton" onclick="sbaidu();$('#moresearch').fadeOut(200);"><svg t="1604738787861" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2869" width="20px" height="20px"><path d="M184.081688 539.606474c111.325025-23.971136 95.969849-157.134634 92.813507-186.224162-5.459618-44.78593-58.264362-123.182633-129.836543-116.86995-89.998392 7.933508-103.135598 138.196583-103.135598 138.196584-12.241487 60.141106 29.089528 188.783357 140.158634 164.854874m206.655076-223.503116c61.420704 0 111.069106-70.804422 111.069105-158.243618 0-87.012664-49.477789-157.817086-110.898492-157.817086S279.539698 70.420543 279.539698 157.859739s49.904322 158.243618 111.325025 158.243619m264.748825 10.45005c82.320804 11.089849 134.869628-76.77588 145.532945-143.314975 10.663317-66.112563-42.653266-143.314975-100.661709-156.537488-58.434975-13.478432-130.518995 79.932221-137.77005 140.755779-7.677588 74.643216 10.663317 148.8599 92.557588 159.395257M981.185931 438.688845c0-31.819337-26.146452-127.661226-124.121006-127.661226-97.889246 0-111.325025 90.424925-111.325025 154.404824 0 60.994171 5.033085 145.874171 127.32 143.314976 121.775076-2.985729 108.467257-138.196583 108.467257-170.186534M857.491458 717.470595s-127.32-98.529045-201.579337-204.735679c-100.661709-156.836061-243.763418-92.984121-291.492423-13.478432-47.771658 80.316101-121.988342 130.604302-132.438392 144.04008-10.663317 13.222513-153.551759 90.424925-121.732423 231.180704 31.98995 140.755779 143.314975 138.196583 143.314976 138.196584s81.894272 8.104121 177.437588-13.222513 177.437588 5.118392 177.437588 5.118392 222.095558 74.643216 283.558916-68.671759c60.738251-143.741508-34.549146-217.958191-34.549146-217.958191" p-id="2870"></path></svg></span>
+    <span id="googlebutton" class="searchbutton" onclick="sgoogle();$('#moresearch').fadeOut(200);"><svg t="1604739557564" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3024" width="20px" height="20px"><path d="M522.24 438.826667V614.4h290.389333c-11.733333 75.306667-87.722667 220.757333-290.389333 220.757333-174.72 0-317.397333-144.597333-317.397333-323.157333s142.72-323.157333 317.397333-323.157333c99.413333 0 166.016 42.197333 204.16 78.890666l138.837333-133.888C776.064 50.602667 660.437333 0 522.24 0c-283.093333 0-512 228.906667-512 512s228.906667 512 512 512c295.509333 0 491.52-207.744 491.52-500.309333 0-33.621333-3.626667-59.306667-8.064-84.864H522.24z" p-id="3025"></path></svg></span>
+    <span id="bingbutton" class="searchbutton" onclick="sbing();$('#moresearch').fadeOut(200);"><svg t="1604739375898" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1892" width="20px" height="20px"><path d="M153.813333 0L358.4 71.936V791.893333l288.128-166.186666-141.226667-66.346667-89.173333-221.866667 453.973333 159.488v231.893334L358.528 1024l-204.672-113.92V0z" p-id="1893"></path></svg></span>
+    <span id="morebutton" class="searchbutton" onclick="smore()"><svg t="1607161881895" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1154" width="20px" height="20px"><path d="M932.331207 355.808682l-82.797751-78.876442c-12.026918-11.495822-30.987758-11.531638-42.379203-0.109494L463.235366 597.451184c-11.383258 11.379165-10.828626 29.934776 1.206478 41.387619l82.772168 78.902024c12.036128 11.495822 31.013341 11.522428 42.379203 0.143263l343.927073-320.662207C944.894338 385.826346 944.366312 367.287107 932.331207 355.808682z" p-id="1155"></path><path d="M174.092014 270.492574l-82.601276 80.756255c-12.001335 11.733229-12.311397 30.467919-0.689708 41.813315l402.142963 378.813628c11.639085 11.388375 30.804586 11.05273 42.804898-0.654916l82.601276-80.738859c12.001335-11.742439 12.311397-30.467919 0.672312-41.839921L216.888725 269.845845C205.249641 258.45747 186.084139 258.758322 174.092014 270.492574z" p-id="1156"></path></svg></span>
+		</div>
+	<div id="words" style="display:none">
+		<div id="word1" onclick="searchword('word1')"></div>
+		<div id="word2" onclick="searchword('word2')"></div>
+		<div id="word3" onclick="searchword('word3')"></div>
+		<div id="word4" onclick="searchword('word4')"></div>
+		<div id="word5" onclick="searchword('word5')"></div>
+	</div>
+	<div id="moresearch" style="display:none" onclick="document.getElementById('search').focus()">		
+		<div class="morebtn" id="wikipedia" onclick="diysearch('https://zh.wikipedia.org/wiki/','wikipedia')">维基百科</div>
+		<div class="morebtn" id="baidubaike" onclick="diysearch('https://baike.baidu.com/item/','baidubaike')">百度百科</div>
+		<div class="morebtn" id="sgbaike" onclick="diysearch('https://www.sogou.com/sogou?ie=utf8&insite=baike.sogou.com&pid=sogou-wsse-17737832ac17be52&query=','sgbaike')">搜狗百科</div>
+		<div class="morebtn" id="bytedancebaike" onclick="diysearch('https://www.baike.com/wiki/','bytedancebaike')">头条百科</div>
+		<div class="morebtn" id="360baike" onclick="diysearch('https://baike.so.com/search/?q=','360baike')">360百科</div>
+		
+		<div class="moretitle"></div>
+		<div class="morebtn" id="kuwo" onclick="diysearch('https://www.kuwo.cn/search/list?key=','kuwo')">酷我音乐</div>
+		<div class="morebtn" id="neteasemusic" onclick="diysearch('https://music.163.com/#/search/m/?s=','neteasemusic')">网易云音乐</div>
+		<div class="morebtn" id="kugo" onclick="diysearch('https://www.kugou.com/yy/html/search.html#searchType=song&searchKeyWord=','kugo')">酷狗音乐</div>
+		<div class="morebtn" id="bdyy" onclick="diysearch('https://music.taihe.com/search?word=','bdyy')">千千音乐</div>
+		
+		<div class="moretitle"></div>
+		<div class="morebtn" id="bili" onclick="diysearch('https://search.bilibili.com/all?keyword=','bili')">哔哩哔哩</div>
+		<div class="morebtn" id="ytb" onclick="diysearch('https://www.youtube.com/results?search_query=','ytb')">YouTube</div>
+		<div class="morebtn" id="youku" onclick="diysearch('https://so.youku.com/search_video/q_','youku')">优酷</div>
+		<div class="morebtn" id="iqiyi" onclick="diysearch('https://so.iqiyi.com/so/q_','iqiyi')">爱奇艺</div>
+		<div class="morebtn" id="qqvid" onclick="diysearch('https://v.qq.com/x/search/?q=','qqvid')">腾讯视频</div>
+		<div class="morebtn" id="acfun" onclick="diysearch('https://www.acfun.cn/search/?keyword=','acfun')">AcFun</div>
+		
+		<div class="moretitle"></div>
+		<div class="morebtn" id="mdn" onclick="diysearch('https://developer.mozilla.org/zh-CN/search?q=','mdn')">MDN</div>
+		<div class="morebtn" id="Stackoverflow" onclick="diysearch('https://stackoverflow.com/search?q=','Stackoverflow')">Stackoverflow</div>
+		<div class="morebtn" id="github" onclick="diysearch('https://github.com/search?q=','github')">GitHub</div>
+		<div class="morebtn" id="gitee" onclick="diysearch('https://search.gitee.com/?q=','gitee')">Gitee</div>
+		<div class="morebtn" id="csdn" onclick="diysearch('https://so.csdn.net/so/search/s.do?q=','csdn')">CSDN</div>
+		<div class="morebtn" id="runoob" onclick="diysearch('https://www.runoob.com/?s=','runoob')">菜鸟教程</div>
+	</div>
+    </center>
+	</div>
+		
+					
+						
+	<div class="welcome" id="pagebox" style="top:-200vh">
+	<iframe class="welcomeframe" width="100%" height="100%" src frameborder="0"></iframe>
+	</div>
+	
+    <div class="setting" id="pagebox" style="top:-100%">
+		<div style="width:100%;height:50px">
+			<span style="float:left;font-size:1.5em;padding-top:6px">系统设置</span>
+    		<h1 id="boxclose" onclick="closebox('.setting')" style="display:inline-block;float:right">×</h3>
+		</div>
+	<div class="settingbox" style="height:calc(100% - 50px);border-radius:10px;overflow:scroll">
+		<input type="file" id="myimg" onchange="saveback(this)" accept="image/png,image/jpeg" style="display:none;"/>
+		<div class="settingsbox">
+			<div class="setgroup">
+			<h2>壁纸设置</h2>
+			<div style="height:100px;width:100%;overflow:scroll">
+				<div style="width:1400px;">
+					<img src="https://img.maocdn.cn/img/2020/10/23/190b944765a64218532fdbb16ef1bd13.png" width="130px" height="80px" onclick="$('#myimg').click();" id="imgdiy" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/10/23/58e2bee4754ed5ca41740ae2641b61a5.png" width="130px" height="80px" onclick="savebackimg('ran','https://api.ixiaowai.cn/gqapi/gqapi.php')" id="imgran" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/10/24/a3e774c83a06da58d14010776a949761.png" width="130px" height="80px" onclick="savebackimg('bing','https://www.yangshangzhen.com/bing/wallpaper')" id="imgbing" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/08/imagee37bc7d4e7e8ac7b.md.png" width="130px" height="80px" onclick="savebackimg('1','https://img.maocdn.cn/img/2020/11/08/imagee37bc7d4e7e8ac7b.png')" id="img1" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/ChipmunkJP_ZH-CN1697070440_1920x1080.md.jpg" width="130px" height="80px" onclick="savebackimg('2','https://img.maocdn.cn/img/2020/11/28/ChipmunkJP_ZH-CN1697070440_1920x1080.jpg')" id="img2" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/HokkaidoShida_ZH-CN0103354943_1920x1080.md.jpg" width="130px" height="80px" onclick="savebackimg('3','https://img.maocdn.cn/img/2020/11/28/HokkaidoShida_ZH-CN0103354943_1920x1080.jpg')" id="img3" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/UNBuilding_ZH-CN7730281645_1920x1080.md.jpg" width="130px" height="80px" onclick="savebackimg('4','https://img.maocdn.cn/img/2020/11/28/UNBuilding_ZH-CN7730281645_1920x1080.jpg')" id="img4" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/theme.md.jpg" width="130px" height="80px" onclick="savebackimg('5','https://img.maocdn.cn/img/2020/11/28/theme.jpg')" id="img5" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/theme7e041df0022ee443.md.jpg" width="130px" height="80px" onclick="savebackimg('6','https://img.maocdn.cn/img/2020/11/28/theme7e041df0022ee443.jpg')" id="img6" class="backimg"></img>
+					<img src="https://img.maocdn.cn/img/2020/11/28/themeae182dd7af7087de.md.jpg" width="130px" height="80px" onclick="savebackimg('7','https://img.maocdn.cn/img/2020/11/28/themeae182dd7af7087de.jpg')" id="img7" class="backimg"></img>
+				</div>
+			</div>
+		</div>
+		<div class="setgroup" style="height:240px">
+			<h2>个性化</h2>
+				<span style="float:left;">用户名</span>
+				<input id="nameinp" value="" placeholder="输入新用户名..." oninput="savename()" autocomplete="off"></input>
+			<p><br></p>
+				<span style="float:left;">主题颜色</span>
+				<span style="background:rgb(200 ,200, 200);float:right;width:20px;height:20px;border-radius:50%" class="setcolorbtn" onclick="changecss('/css/dark.css?qwq','dark')" id="styledark"></span>
+				<span style="background:#00a2e8;float:right;width:20px;height:20px;border-radius:50%" class="setcolorbtn" onclick="changecss('/css/blue.css?qwq','blue')" id="styleblue"></span> 
+				<span style="background:green;float:right;width:20px;height:20px;border-radius:50%" class="setcolorbtn" onclick="changecss('/css/green.css?qwq','green')" id="stylegreen"></span> 
+				<span style="background:pink;float:right;width:20px;height:20px;border-radius:50%" class="setcolorbtn" onclick="changecss('/css/pink.css?qwq','pink')" id="stylepink"></span> 
+				<span style="background:yellow;float:right;width:20px;height:20px;border-radius:50%" class="setcolorbtn" onclick="changecss('/css/yellow.css?qwq','yellow')" id="styleyellow"></span> 
+			<p><br></p>
+				<span style="float:left;" onclick="$('.heibianbtn').click()">显示顶部黑边<br><font size="0.5em" color="grey">应用浅色壁纸时建议开启</font></span>
+				<span class="heibianbtn" onclick="heibianoff()" id="setbtnon" style="margin-top:9px">√</span> 
+			<p><br><br></p>
+				<span style="float:left;">设置顶栏标题</span>
+				<input id="setinp" value="" placeholder="输入顶栏标题..." oninput="savetitle()" autocomplete="off"></input>
+		</div>
+		<div class="setgroup" style="height:290px">
+			<h2>功能</h2>
+			<span style="float:left;" onclick="$('.blurbtn').click()">使用毛玻璃<br><font size="0.5em" color="grey">关闭可提升流畅度</font></span>
+			<span class="blurbtn" onclick="bluroff()" id="setbtnon" style="margin-top:9px">√</span> 
+			<p><br><br></p>
+			<span style="float:left;" onclick="$('.yiyanbtn').click()">显示[<a href="//hitokoto.cn" target="_blank">一言</a>]</span>
+			<span class="yiyanbtn" onclick="yiyanoff()" id="setbtnon">√</span> 
+			<p><br></p>
+			<span style="float:left;" onclick="$('.tongjibtn').click()">允许运行访客统计<br><font size="0.5em" color="grey">统计功能由百度提供，默认关闭</font></span>
+			<span class="tongjibtn" onclick="tongjion()" id="setbtnoff" style="margin-top:9px">√</span> 
+			<p><br><br></p>
+			<span style="float:left;" onclick="$('.lianxiangbtn').click()">显示搜索联想<br></span>
+			<span class="lianxiangbtn" onclick="lianxiangoff()" id="setbtnoff">√</span> 
+			<p><br></p>
+			<span style="float:left;" onclick="$('.hellobtn').click()">显示问候语<br></span>
+			<span class="hellobtn" onclick="hellooff()" id="setbtnoff">√</span> 
+			<p><br></p>
+		</div>
+		<div class="setgroup" style="height:120px">
+			<h2>修复与重置</h2>
+			<span style="float:left;">重置本地设置<br><font size="0.5em" color="grey">推荐使用过预览版本的用户重置</font></span>
+			<span onclick="localStorage.clear();location.reload();" id="setbtnon" style="margin-top:4px;width:auto;padding:5px">重置</span> 
+		</div>
+		</div>
+    	<div class="setgroup">
+    		<h2>关于</h2>
+			<h3>SimTab</h3>
+			版权所有©SimSoft<br>
+			<p><a href="//yanshuhao.ga" target="_blank">开发者</a>丨<a href="/page/update.html" target="_blank">更新日志</a>丨<a href="mailto:ysh@simsoft.top" target="_blank">问题反馈</a></p>
+    	</div>
+    </div>
+    <script src="/js/ui.js?3.1" onerror="alert('关键资源加载失败！请刷新页面！！')"></script>
+</body>
+</html>
