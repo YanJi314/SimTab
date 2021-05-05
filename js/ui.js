@@ -194,7 +194,7 @@ function check() {
 var word=document.getElementById("search").value
 var set=localStorage.getItem('lianxiang')
 if (word.length>0 && set=="on"){
-	var sugurl = "http://suggestion.baidu.com/su?wd=#content#&cb=window.baidu.sug";                
+	var sugurl = "https://suggestion.baidu.com/su?wd=#content#&cb=window.baidu.sug";                
 	var content = document.getElementById("search").value
     sugurl = sugurl.replace("#content#", content);
     window.baidu = {
